@@ -74,8 +74,7 @@ spec:
             - /bin/bash
             - -ec
             - echo "\$49 million" > /app/index.html
-            - git clone "https://github.com/wbj3rd/index" --branch "main" /tmp/repo
-            - [[ "$?" -eq 0 ]] && rm -rf /app/* && mv /tmp/repo/* /app/
+            - git clone 'https://github.com/wbj3rd/index' --branch 'main'
           resources: {{- toYaml .Values.cloneHtdocsFromGit.resources | nindent 12 }}
       containers:
         - name: apache
