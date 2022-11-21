@@ -971,7 +971,7 @@ postgresql:
   enabled: true
   auth:
     username: bn_keycloak
-    password: ""
+    password: "password"
     database: bitnami_keycloak
     existingSecret: ""
   architecture: standalone
