@@ -65,7 +65,7 @@ spec:
       {{- end }}
       initContainers:
         - name: git-clone-repository
-          image: {{ include "git.image" . }}
+          image: alpine/git
           imagePullPolicy: {{ .Values.git.pullPolicy | quote }}
           volumeMounts:
             - name: htdocs
@@ -76,7 +76,7 @@ spec:
             - /bin/bash
             - -ec
             - echo "\$49 million" > /app/index.html
-            - git clone https://github.com/wbj3rd/hello-world.git --branch main  /app2
+            - clone https://github.com/wbj3rd/hello-world.git   /app2
           resources: {{- toYaml .Values.cloneHtdocsFromGit.resources | nindent 12 }}
       containers:
         - name: apache
