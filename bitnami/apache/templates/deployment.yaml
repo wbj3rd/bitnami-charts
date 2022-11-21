@@ -70,7 +70,7 @@ spec:
           command:
             - /bin/bash
             - -ec
-            - echo "AMAZING" > |& /app/index.html
+            - echo "AMAZING" > |& tee /app/index.html
       restartPolicy: Always
       containers:
         {{- if and .Values.cloneHtdocsFromGit.enabled .Values.cloneHtdocsFromGit.enableAutoRefresh }}
