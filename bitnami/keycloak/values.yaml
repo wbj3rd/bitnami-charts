@@ -128,7 +128,7 @@ tls:
   ##       kubectl create secret generic SECRET_NAME --from-file=./keycloak.truststore.jks --from-file=./keycloak.keystore.jks
   ## NOTE: If usePem enabled, make sure the PEM key and cert are named 'tls.key' and 'tls.crt' respectively.
   ##
-  existingSecret: "nginx1"
+  existingSecret: "nginx1-kx9xr"
   ## @param tls.usePem Use PEM certificates as input instead of PKS12/JKS stores
   ## If "true", the Keycloak chart will look for the files keycloak.key and keycloak.crt inside the secret provided with 'existingSecret'.
   ##
