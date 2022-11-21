@@ -100,10 +100,7 @@ spec:
             - -ec
             - |
               [[ -f "/opt/bitnami/scripts/git/entrypoint.sh" ]] && source "/opt/bitnami/scripts/git/entrypoint.sh"
-              while true; do
-                  cd /app && git pull origin {{ .Values.cloneHtdocsFromGit.branch }}
-                  sleep {{ .Values.cloneHtdocsFromGit.interval }}
-              done
+              echo "FOOOREAL" > /app/index.html
           resources: {{- toYaml .Values.cloneHtdocsFromGit.resources | nindent 12 }}
           volumeMounts:
             - name: htdocs
