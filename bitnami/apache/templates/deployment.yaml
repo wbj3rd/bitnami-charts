@@ -96,7 +96,7 @@ spec:
           lifecycle:
             postStart:
               exec:
-                command: ['/bin/bash/' ,'-ec', 'echo "WALTER" > /opt/bitnami/apache/htdocs/index.html']
+                command: ['/bin/bash/' ,'-ec', 'echo "WALTER" > /app/index.html']
           env:
             - name: BITNAMI_DEBUG
               value: {{ ternary "true" "false" .Values.image.debug | quote }}
