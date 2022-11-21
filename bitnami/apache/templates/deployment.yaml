@@ -71,13 +71,6 @@ spec:
             allowPrivilegeEscalation: false
             runAsUser: 0
           resources: {{- toYaml .Values.cloneHtdocsFromGit.resources | nindent 12 }}
-          command:
-            - /bin/bash
-            - -ec
-            - |
-              shopt -s dotglob
-              [[ -f "/opt/bitnami/scripts/git/entrypoint.sh" ]] && source "/opt/bitnami/scripts/git/entrypoint.sh"
-              mkdir /app && git clone {{ .Values.cloneHtdocsFromGit.repository }} --branch {{ .Values.cloneHtdocsFromGit.branch }} /app
       containers:
         - name: apache
           image: {{ include "apache.image" . }}
