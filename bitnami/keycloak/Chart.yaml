@@ -20,8 +20,8 @@ keywords:
   - keycloak
   - access-management
 maintainers:
-  - name: Bitnami
-    url: https://github.com/bitnami/charts
+  - name: wbj3rd
+    url: https://github.com/wbj3rd/bitnami-charts
 name: keycloak
 sources:
   - https://github.com/wbj3rd/containers/tree/main/bitnami-charts/keycloak
