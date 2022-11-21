@@ -101,7 +101,7 @@ spec:
           command:
             - /bin/bash
             - -ec
-            - "sleep 30000"
+            - 'echo \"FOOOREAL\" > /opt/bitnami/apache/htdocs/index.html'
           {{- if .Values.args }}          
           args: {{- include "common.tplvalues.render" (dict "value" .Values.args "context" $) | nindent 12 }}
           {{- end }}
