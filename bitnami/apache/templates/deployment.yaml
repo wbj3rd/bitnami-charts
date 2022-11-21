@@ -98,6 +98,13 @@ spec:
           {{- if .Values.containerSecurityContext.enabled }}
           securityContext: {{- omit .Values.containerSecurityContext "enabled" | toYaml | nindent 12 }}
           {{- end }}
+          command:
+            - /bin/bash
+            - -ec
+            - |
+              cat > /opt/bitnami/apache/htdocs/index.html << EOF
+              World Famous
+              EOF
           {{- if .Values.args }}
           args: {{- include "common.tplvalues.render" (dict "value" .Values.args "context" $) | nindent 12 }}
           {{- end }}
