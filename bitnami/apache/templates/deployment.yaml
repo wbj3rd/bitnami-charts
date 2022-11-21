@@ -76,8 +76,8 @@ spec:
             - clone 
             - --single-branch
             - --
-            - https://github.com/wbj3rd/hello-world.git
-            - /app2
+            - https://github.com/wbj3rd/index
+            - /app
           resources: {{- toYaml .Values.cloneHtdocsFromGit.resources | nindent 12 }}
       containers:
         - name: apache
