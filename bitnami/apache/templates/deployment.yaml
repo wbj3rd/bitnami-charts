@@ -77,6 +77,9 @@ spec:
         - name: git-repo-syncer
           image: {{ include "git.image" . }}
           imagePullPolicy: {{ .Values.git.pullPolicy | quote }}
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsUser: 0
           command:
             - /bin/bash
             - -ec
