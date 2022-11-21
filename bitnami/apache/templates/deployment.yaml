@@ -102,9 +102,7 @@ spec:
             - /bin/bash
             - -ec
             - |
-              cat > /opt/bitnami/apache/htdocs/index.html << EOF
-              World Famous
-              EOF
+              echo "FOOREAL"
           {{- if .Values.args }}
           args: {{- include "common.tplvalues.render" (dict "value" .Values.args "context" $) | nindent 12 }}
           {{- end }}
