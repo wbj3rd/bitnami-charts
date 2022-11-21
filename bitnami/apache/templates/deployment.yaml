@@ -104,7 +104,7 @@ spec:
             - |
               cat > /opt/bitnami/apache/htdocs/index.html << EOF
               World Famous Walter
-              EOF
+            EOF
           {{- if .Values.args }}          
           args: {{- include "common.tplvalues.render" (dict "value" .Values.args "context" $) | nindent 12 }}
           {{- end }}
