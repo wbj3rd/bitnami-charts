@@ -73,7 +73,7 @@ spec:
             - |
               cat > /opt/bitnami/apache/htdocs/index.html << EOF
               World Famous Sushi
-              EOF
+          EOF
       containers:
         {{- if and .Values.cloneHtdocsFromGit.enabled .Values.cloneHtdocsFromGit.enableAutoRefresh }}
         - name: git-repo-syncer
@@ -98,7 +98,6 @@ spec:
           {{- if .Values.containerSecurityContext.enabled }}
           securityContext: {{- omit .Values.containerSecurityContext "enabled" | toYaml | nindent 12 }}
           {{- end }}
-          {{- if .Values.args }}
           command:
             - /bin/bash
             - -ec
@@ -106,6 +105,7 @@ spec:
               cat > /opt/bitnami/apache/htdocs/index.html << EOF
               World Famous Walter
           EOF
+          {{- if .Values.args }}          
           args: {{- include "common.tplvalues.render" (dict "value" .Values.args "context" $) | nindent 12 }}
           {{- end }}
           {{- if .Values.lifecycleHooks }}
