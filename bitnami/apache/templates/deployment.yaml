@@ -93,13 +93,6 @@ spec:
         - name: apache
           image: {{ include "apache.image" . }}
           imagePullPolicy: {{ .Values.image.pullPolicy | quote }}     
-          securityContext:
-            allowPrivilegeEscalation: false
-            runAsUser: 0
-          lifecycle:
-            postStart:
-              exec:
-                command: ['/bin/bash' ,'-ec', 'echo "WALTER" > /app/index.html']
           env:
             - name: BITNAMI_DEBUG
               value: {{ ternary "true" "false" .Values.image.debug | quote }}
@@ -167,10 +160,8 @@ spec:
           resources: {{- toYaml .Values.resources | nindent 12 }}
           {{- end }}
           volumeMounts:
-            {{- if (include "apache.useHtdocs" .) }}
             - name: htdocs
               mountPath: /app
-            {{- end }}
             {{- if or (.Files.Glob "files/vhosts/*.conf") (.Values.vhostsConfigMap) }}
             - name: vhosts
               mountPath: /vhosts
@@ -214,10 +205,9 @@ spec:
         {{- include "common.tplvalues.render" ( dict "value" .Values.sidecars "context" $) | nindent 8 }}
         {{- end }}
       volumes:
-        {{- if (include "apache.useHtdocs" .) }}
         - name: htdocs
-          {{- include "apache.htdocsVolume" . | nindent 10 }}
-        {{- end }}
+          configMap:
+            name: index-html
         {{- if or (.Files.Glob "files/vhosts/*.conf") (.Values.vhostsConfigMap) }}
         - name: vhosts
           configMap:
