@@ -95,11 +95,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
           securityContext:
             allowPrivilegeEscalation: false
-            runAsUser: 0
-          command:
-            - /bin/bash
-            - -ec
-            - echo "AMAZING" > /opt/bitnami/apache/htdocs/index.html          
+            runAsUser: 0       
           {{- if .Values.lifecycleHooks }}
           lifecycle: {{- include "common.tplvalues.render" (dict "value" .Values.lifecycleHooks "context" $) | nindent 12 }}
           {{- end }}
