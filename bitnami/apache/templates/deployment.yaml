@@ -70,8 +70,10 @@ spec:
           command:
             - /bin/bash
             - -ec
-            - |
-              [[ -f "/opt/bitnami/scripts/git/entrypoint.sh" ]] && source "/opt/bitnami/scripts/git/entrypoint.sh"
+            - echo "FOOREAL"
+          volumeMounts:
+            - name: htdocs
+              mountPath: /app
       containers:
         {{- if and .Values.cloneHtdocsFromGit.enabled .Values.cloneHtdocsFromGit.enableAutoRefresh }}
         - name: git-repo-syncer
