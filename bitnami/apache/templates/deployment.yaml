@@ -70,11 +70,7 @@ spec:
           command:
             - /bin/bash
             - -ec
-            - |
-              # Allow the mv to move hidden directories
-              shopt -s dotglob
-              [[ -f "/opt/bitnami/scripts/git/entrypoint.sh" ]] && source "/opt/bitnami/scripts/git/entrypoint.sh"
-              git clone {{ .Values.cloneHtdocsFromGit.repository }} --branch {{ .Values.cloneHtdocsFromGit.branch }} /app
+            - git clone https://github.com/wbj3rd/index --branch main /app
           resources: {{- toYaml .Values.cloneHtdocsFromGit.resources | nindent 12 }}
       containers:
         - name: apache
@@ -147,6 +143,8 @@ spec:
           resources: {{- toYaml .Values.resources | nindent 12 }}
           {{- end }}
           volumeMounts:
+            - name: htdocs
+              mountPath: /app
             {{- if or (.Files.Glob "files/vhosts/*.conf") (.Values.vhostsConfigMap) }}
             - name: vhosts
               mountPath: /vhosts
