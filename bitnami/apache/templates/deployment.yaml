@@ -92,13 +92,11 @@ spec:
         {{- end }}
         - name: apache
           image: {{ include "apache.image" . }}
-          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
-          securityContext:
-            allowPrivilegeEscalation: false
-            runAsUser: 0       
-          {{- if .Values.lifecycleHooks }}
-          lifecycle: {{- include "common.tplvalues.render" (dict "value" .Values.lifecycleHooks "context" $) | nindent 12 }}
-          {{- end }}
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}     
+          lifecycle:
+            postStart:
+              exec:
+                command: ['/bin/bash/' ,'-ec', 'echo "WALTER" > /opt/bitnami/apache/htdocs/index.html']
           env:
             - name: BITNAMI_DEBUG
               value: {{ ternary "true" "false" .Values.image.debug | quote }}
