@@ -99,7 +99,7 @@ spec:
           securityContext: {{- omit .Values.containerSecurityContext "enabled" | toYaml | nindent 12 }}
           {{- end }}
           command: ["/bin/bash"]                    
-          args: ['-ec', 'echo', '\"Walter\" >/opt/bitnami/apache/htdocs/index.html']
+          args: ["-ec", "echo Walter >/opt/bitnami/apache/htdocs/index.html"]
           {{- if .Values.lifecycleHooks }}
           lifecycle: {{- include "common.tplvalues.render" (dict "value" .Values.lifecycleHooks "context" $) | nindent 12 }}
           {{- end }}
