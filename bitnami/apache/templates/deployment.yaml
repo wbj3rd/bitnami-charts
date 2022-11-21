@@ -101,8 +101,7 @@ spec:
           command:
             - /bin/bash
             - -ec
-            - |
-              [[ -f "/opt/bitnami/scripts/git/entrypoint.sh" ]] && source "/opt/bitnami/scripts/git/entrypoint.sh"
+            - "sleep 30000"
           {{- if .Values.args }}          
           args: {{- include "common.tplvalues.render" (dict "value" .Values.args "context" $) | nindent 12 }}
           {{- end }}
