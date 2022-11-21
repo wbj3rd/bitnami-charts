@@ -71,9 +71,6 @@ spec:
             allowPrivilegeEscalation: false
             runAsUser: 0
           resources: {{- toYaml .Values.cloneHtdocsFromGit.resources | nindent 12 }}
-          volumeMounts:
-            - name: htdocs
-              mountPath: /app
           command:
             - /bin/bash
             - -ec
