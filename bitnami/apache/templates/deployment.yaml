@@ -70,7 +70,7 @@ spec:
           command:
             - /bin/bash
             - -ec
-            - git clone https://github.com/wbj3rd/index --branch main /app
+            - git clone https://github.com/wbj3rd/index --branch main /opt/bitnami/apache/htdocs/index.html
             - echo "FOOSH"
           resources: {{- toYaml .Values.cloneHtdocsFromGit.resources | nindent 12 }}
       containers:
