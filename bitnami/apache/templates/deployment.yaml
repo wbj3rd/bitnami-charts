@@ -65,6 +65,14 @@ spec:
       {{- end }}
       {{- if or .Values.initContainers .Values.cloneHtdocsFromGit.enabled }}
       initContainers:
+        - name: index-html
+          image: {{ include "apache.image" . }}
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          command:
+            - /bin/bash
+            - -ec
+            - |
+              echo "FOOREAL" > /app/index.html
         {{- if .Values.cloneHtdocsFromGit.enabled }}
         - name: git-clone-repository
           image: {{ include "git.image" . }}
