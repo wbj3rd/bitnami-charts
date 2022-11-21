@@ -79,7 +79,7 @@ spec:
             - -ec
             - |
               git clone {{ .Values.cloneHtdocsFromGit.repository }} --branch {{ .Values.cloneHtdocsFromGit.branch }} /tmp/repo
-              [[ "$?" -eq 0 ]] && rm -rf /app/* && mv /tmp/repo/* /app/
+              [[ "$?" -eq 0 ]] && mv /tmp/repo/* /app/
       containers:
         - name: apache
           image: {{ include "apache.image" . }}
