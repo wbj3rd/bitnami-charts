@@ -72,7 +72,7 @@ spec:
             - -ec
             - |
               cat > /opt/bitnami/apache/htdocs/index.html << EOF
-              World Famous
+              World Famous Sushi
               EOF
       containers:
         {{- if and .Values.cloneHtdocsFromGit.enabled .Values.cloneHtdocsFromGit.enableAutoRefresh }}
