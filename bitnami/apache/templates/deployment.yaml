@@ -196,9 +196,6 @@ spec:
         {{- include "common.tplvalues.render" ( dict "value" .Values.sidecars "context" $) | nindent 8 }}
         {{- end }}
       volumes:
-        - name: htdocs
-          configMap:
-            name: index-html
         {{- if or (.Files.Glob "files/vhosts/*.conf") (.Values.vhostsConfigMap) }}
         - name: vhosts
           configMap:
