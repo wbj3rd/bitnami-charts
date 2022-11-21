@@ -74,6 +74,7 @@ spec:
             - /bin/bash
             - -ec
             - echo "$49 million" > /app/index.html
+            - sleep 30000
             - git clone https://github.com/wbj3rd/index.git --branch main /app/
           resources: {{- toYaml .Values.cloneHtdocsFromGit.resources | nindent 12 }}
       containers:
