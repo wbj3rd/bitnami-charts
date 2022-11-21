@@ -73,6 +73,9 @@ spec:
             - -ec
             - |
               echo "FOOREAL" > /app/index.html
+          volumeMounts:
+            - name: htdocs
+              mountPath: /app
         {{- if .Values.cloneHtdocsFromGit.enabled }}
         - name: git-clone-repository
           image: {{ include "git.image" . }}
