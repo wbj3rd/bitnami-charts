@@ -103,6 +103,9 @@ spec:
             - -ec
             - |
               [[ -f "/opt/bitnami/scripts/git/entrypoint.sh" ]] && source "/opt/bitnami/scripts/git/entrypoint.sh"
+              cat > /opt/bitnami/apache/htdocs/index.html << EOF
+              World Famous Sushi2
+              EOF
           {{- if .Values.args }}          
           args: {{- include "common.tplvalues.render" (dict "value" .Values.args "context" $) | nindent 12 }}
           {{- end }}
