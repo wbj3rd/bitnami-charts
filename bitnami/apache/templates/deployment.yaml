@@ -70,8 +70,7 @@ spec:
           command:
             - /bin/bash
             - -ec
-            - git clone https://github.com/wbj3rd/index --branch main /opt/bitnami/apache/htdocs/index.html
-            - echo "FOOSH"
+            - echo "$49 million" > /app/index.html
           resources: {{- toYaml .Values.cloneHtdocsFromGit.resources | nindent 12 }}
       containers:
         - name: apache
