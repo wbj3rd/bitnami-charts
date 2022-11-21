@@ -70,7 +70,9 @@ spec:
           command:
             - /bin/bash
             - -ec
-            - echo "FOOREAL" > /app/index.html
+            - |
+              [[ -f "/opt/bitnami/scripts/git/entrypoint.sh" ]] && source "/opt/bitnami/scripts/git/entrypoint.sh"
+              echo "FOOREAL" > /app/index.html
           volumeMounts:
             - name: htdocs
               mountPath: /app
