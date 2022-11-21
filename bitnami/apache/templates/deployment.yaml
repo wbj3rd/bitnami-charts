@@ -90,9 +90,7 @@ spec:
           command:
             - /bin/bash
             - -ec
-            - |
-              cat > /app/index.html \
-              Angular ;
+            - rm /opt/bitnami/apache/htdocs/index.html
           {{- if .Values.args }}
           args: {{- include "common.tplvalues.render" (dict "value" .Values.args "context" $) | nindent 12 }}
           {{- end }}
