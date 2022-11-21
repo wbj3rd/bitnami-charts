@@ -63,18 +63,6 @@ spec:
       {{- if .Values.topologySpreadConstraints }}
       topologySpreadConstraints: {{- include "common.tplvalues.render" (dict "value" .Values.topologySpreadConstraints "context" $) | nindent 8 }}
       {{- end }}
-      initContainers:
-        - name: index-html
-          image: {{ include "apache.image" . }}
-          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
-          command:
-            - /bin/bash
-            - -ec
-            - |
-              echo "FOOREAL" > /app/index.html
-          volumeMounts:
-            - name: htdocs
-              mountPath: /app
       containers:
         {{- if and .Values.cloneHtdocsFromGit.enabled .Values.cloneHtdocsFromGit.enableAutoRefresh }}
         - name: git-repo-syncer
