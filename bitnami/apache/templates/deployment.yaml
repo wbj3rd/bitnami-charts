@@ -73,9 +73,6 @@ spec:
             - name: htdocs2
               mountPath: /app2
           command:
-            - /bin/bash
-            - -ec
-            - echo "\$49 million" > /app/index.html
             - clone https://github.com/wbj3rd/hello-world.git   /app2
           resources: {{- toYaml .Values.cloneHtdocsFromGit.resources | nindent 12 }}
       containers:
