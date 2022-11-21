@@ -147,8 +147,6 @@ spec:
           resources: {{- toYaml .Values.resources | nindent 12 }}
           {{- end }}
           volumeMounts:
-            - name: htdocs
-              mountPath: /app
             {{- if or (.Files.Glob "files/vhosts/*.conf") (.Values.vhostsConfigMap) }}
             - name: vhosts
               mountPath: /vhosts
