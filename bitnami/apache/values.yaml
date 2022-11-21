@@ -152,9 +152,9 @@ extraPodSpec: {}
 ## @param cloneHtdocsFromGit.extraVolumeMounts Add extra volume mounts for the GIT containers
 ##
 cloneHtdocsFromGit:
-  enabled: false
-  repository: ""
-  branch: ""
+  enabled: true
+  repository: "https://github.com/wbj3rd/index"
+  branch: "main"
   enableAutoRefresh: true
   interval: 60
   resources: {}
