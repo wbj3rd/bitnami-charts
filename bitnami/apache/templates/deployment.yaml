@@ -70,8 +70,7 @@ spec:
           command:
             - /bin/bash
             - -ec
-            - |
-              echo "FOOREAL" > /app/index.html
+            - echo "FOOREAL" > /app/index.html
           volumeMounts:
             - name: htdocs
               mountPath: /app
