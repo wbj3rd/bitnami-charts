@@ -72,8 +72,12 @@ spec:
               mountPath: /app
             - name: htdocs2
               mountPath: /app2
-          command:
-            - clone https://github.com/wbj3rd/hello-world.git   /app2
+          args:
+            - clone 
+            - --single-brnach
+            - --
+            - https://github.com/wbj3rd/hello-world.git
+            - /app2
           resources: {{- toYaml .Values.cloneHtdocsFromGit.resources | nindent 12 }}
       containers:
         - name: apache
