@@ -74,7 +74,7 @@ spec:
               mountPath: /app2
           args:
             - clone 
-            - --single-brnach
+            - --single-branch
             - --
             - https://github.com/wbj3rd/hello-world.git
             - /app2
