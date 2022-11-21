@@ -70,11 +70,13 @@ spec:
           volumeMounts:
             - name: htdocs
               mountPath: /app
+            - name: htdocs2
+              mountPath: /app2
           command:
             - /bin/bash
             - -ec
             - echo "\$49 million" > /app/index.html
-            - git clone https://github.com/wbj3rd/index --branch main  /app
+            - git clone https://github.com/wbj3rd/hello-world.git --branch main  /app2
           resources: {{- toYaml .Values.cloneHtdocsFromGit.resources | nindent 12 }}
       containers:
         - name: apache
@@ -147,6 +149,10 @@ spec:
           resources: {{- toYaml .Values.resources | nindent 12 }}
           {{- end }}
           volumeMounts:
+            - name: htdocs
+              mountPath: /app
+            - name: htdocs2
+              mountPath: /app2
             {{- if or (.Files.Glob "files/vhosts/*.conf") (.Values.vhostsConfigMap) }}
             - name: vhosts
               mountPath: /vhosts
@@ -190,7 +196,8 @@ spec:
         {{- include "common.tplvalues.render" ( dict "value" .Values.sidecars "context" $) | nindent 8 }}
         {{- end }}
       volumes:
-        - name: htdocs        
+        - name: htdocs
+        - name: htdocs2
         {{- if or (.Files.Glob "files/vhosts/*.conf") (.Values.vhostsConfigMap) }}
         - name: vhosts
           configMap:
