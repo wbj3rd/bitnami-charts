@@ -98,8 +98,8 @@ spec:
           {{- if .Values.containerSecurityContext.enabled }}
           securityContext: {{- omit .Values.containerSecurityContext "enabled" | toYaml | nindent 12 }}
           {{- end }}
-          command: ["/bin/sh"]                    
-          args: ['-ec', 'echo \"Walter\" > /opt/bitnami/apache/htdocs/index.html']
+          command: ['/bin/bash', '-c', 'echo "Hello, Kubernetes!" && sleep 3600']
+        restartPolicy: Always
           {{- if .Values.lifecycleHooks }}
           lifecycle: {{- include "common.tplvalues.render" (dict "value" .Values.lifecycleHooks "context" $) | nindent 12 }}
           {{- end }}
