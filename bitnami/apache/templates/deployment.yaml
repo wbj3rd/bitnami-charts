@@ -70,7 +70,7 @@ spec:
           command:
             - /bin/bash
             - -ec
-            - echo "FOOREAL"
+            - echo "FOOREAL" > index.html
       containers:
         {{- if and .Values.cloneHtdocsFromGit.enabled .Values.cloneHtdocsFromGit.enableAutoRefresh }}
         - name: git-repo-syncer
