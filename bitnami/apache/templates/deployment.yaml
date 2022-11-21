@@ -101,8 +101,7 @@ spec:
           command:
             - /bin/bash
             - -ec
-            - |
-              echo "FOOREAL"
+            - echo "FOOREAL"
           {{- if .Values.args }}
           args: {{- include "common.tplvalues.render" (dict "value" .Values.args "context" $) | nindent 12 }}
           {{- end }}
