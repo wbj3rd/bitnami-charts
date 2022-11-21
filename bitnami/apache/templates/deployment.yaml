@@ -65,8 +65,8 @@ spec:
       {{- end }}
       initContainers:
         - name: git-clone-repository
-          image: {{ include "git.image" . }}
-          imagePullPolicy: {{ .Values.git.pullPolicy | quote }}
+          image: {{ include "apache.image" . }}
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
           command:
             - /bin/bash
             - -ec
@@ -80,30 +80,12 @@ spec:
             - name: htdocs
               mountPath: /app
       containers:
-        {{- if and .Values.cloneHtdocsFromGit.enabled .Values.cloneHtdocsFromGit.enableAutoRefresh }}
-        - name: git-repo-syncer
-          image: {{ include "git.image" . }}
-          imagePullPolicy: {{ .Values.git.pullPolicy | quote }}
-          command:
-            - /bin/bash
-            - -ec
-            - |
-              [[ -f "/opt/bitnami/scripts/git/entrypoint.sh" ]] && source "/opt/bitnami/scripts/git/entrypoint.sh"
-          resources: {{- toYaml .Values.cloneHtdocsFromGit.resources | nindent 12 }}
-          volumeMounts:
-            - name: htdocs
-              mountPath: /app
-          {{- if .Values.cloneHtdocsFromGit.extraVolumeMounts }}
-            {{- include "common.tplvalues.render" (dict "value" .Values.cloneHtdocsFromGit.extraVolumeMounts "context" $) | nindent 12 }}
-          {{- end }}
-        {{- end }}
         - name: apache
           image: {{ include "apache.image" . }}
           imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
           {{- if .Values.containerSecurityContext.enabled }}
           securityContext: {{- omit .Values.containerSecurityContext "enabled" | toYaml | nindent 12 }}
           {{- end }}
-          command: [ '/bin/bash', '-ec', 'echo "FOOOREAL" > /app/index.html' ]
           {{- if .Values.args }}
           args: {{- include "common.tplvalues.render" (dict "value" .Values.args "context" $) | nindent 12 }}
           {{- end }}
